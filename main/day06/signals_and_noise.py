@@ -8,4 +8,3 @@ def solve(messages, most_common=True) -> str:
             counters[i].append(c)
     selector = 0 if most_common else -1
     return "".join("".join(Counter(position).most_common()[selector][0]) for position in counters.values())
-

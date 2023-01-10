@@ -11,7 +11,7 @@ def solve_p1(door_id) -> str:
 
 
 def solve_p2(door_id) -> str:
-    password = [""]*8
+    password = [""] * 8
     last_val = -1
     while True:
         last_val, hsh = find_hash_prefix(door_id, last_val + 1)
