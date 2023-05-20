@@ -2,18 +2,7 @@ MAX_IP = 4294967295
 
 
 def solve_lowest(blocked_ranges) -> int:
-    lowest = MAX_IP
-    for c in blocked_ranges:
-        for possible in c[0] - 1, c[1] + 1:
-            if possible < 0:
-                continue
-            is_blocked = False
-            for d in blocked_ranges:
-                if possible in range(d[0], d[1] + 1):
-                    is_blocked = True
-            if not is_blocked:
-                lowest = min(lowest, possible)
-    return lowest
+    return sorted(combine(blocked_ranges), key=lambda r: r.start)[0].stop + 1
 
 
 def solve_allowed(blocked_ranges) -> int:
