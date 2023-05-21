@@ -2,7 +2,7 @@ import re
 
 
 def solve(commands, password) -> str:
-    for cmd in commands:  # swap works
+    for cmd in commands:
         if cmd.startswith("swap position"):
             password = swap(cmd, "position", password)
         elif cmd.startswith("swap letter"):
@@ -56,9 +56,11 @@ def reverse(cmd, password):
     return password[:i1] + "".join(reversed(password[i1:i2 + 1])) + password[i2 + 1:]
 
 
-def move(cmd, password):
+def move(cmd, password, reversed=False):
     positions = re.findall(r'move position (.) to position (.)', cmd)[0]
     i1, i2 = int(positions[0]), int(positions[1])
+    if reversed:
+        i2, i1 = i1, i2
     to_move = password[i1]
     password = password[:i1] + password[i1 + 1:]
     return password[:i2] + to_move + password[i2:]

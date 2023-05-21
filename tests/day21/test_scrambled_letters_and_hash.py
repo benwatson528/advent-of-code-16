@@ -1,3 +1,4 @@
+import itertools
 import os
 from pathlib import Path
 
@@ -10,6 +11,12 @@ def test_p1_simple():
 
 def test_p1_real():
     assert solve(read_input("data/input.txt"), "abcdefgh") == "gcedfahb"
+
+
+def test_p2_real():
+    for permutation in itertools.permutations("abcdefgh"):
+        if solve(read_input("data/input.txt"), permutation) == "fbgdceah":
+            assert "".join(permutation) == "hegbdcfa"
 
 
 def read_input(file_name):
