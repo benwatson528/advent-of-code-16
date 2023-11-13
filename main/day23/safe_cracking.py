@@ -7,6 +7,8 @@ def solve(cmds, a_val=0) -> int:
         split_cmd = cmds[i].split(" ")
         instruction = split_cmd[0]
         args = split_cmd[1:]
+        if register['d'] < 100:
+            print()
         if i in toggles:
             if len(args) == 1:
                 instruction = "dec" if instruction == "inc" else "inc"
@@ -24,12 +26,8 @@ def solve(cmds, a_val=0) -> int:
                     if get_arg(args[0], register) != 0:
                         i += get_arg(args[1], register) - 1
                 case "tgl":
-                    x = i + get_arg(args[0], register)
-                    if x in toggles:
-                        toggles.remove(x)
-                    else:
-                        toggles.add(x)
-        except Exception as e:
+                    toggles.add(i + get_arg(args[0], register))
+        except Exception:
             pass
         i += 1
     return register["a"]
