@@ -1,17 +1,22 @@
 import os
 from pathlib import Path
 
-from main.day24.air_duct_spelunking import solve
+from main.day24.air_duct_spelunking import solve_p1, solve_p2
 
 
 def test_p1_simple():
     walkable, poi = read_input("data/test_input.txt")
-    assert solve(walkable, poi) == 456
+    assert solve_p1(walkable, poi) == 14
 
 
 def test_p1_real():
     walkable, poi = read_input("data/input.txt")
-    assert solve(walkable, poi) == 0
+    assert solve_p1(walkable, poi) == 456
+
+
+def test_p2_real():
+    walkable, poi = read_input("data/input.txt")
+    assert solve_p2(walkable, poi) == 704
 
 
 def read_input(file_name):

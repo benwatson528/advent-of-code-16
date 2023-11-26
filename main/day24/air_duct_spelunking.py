@@ -1,12 +1,16 @@
 import sys
-from collections import deque
 
 sys.setrecursionlimit(150000)
 
 
-def solve(walkable, poi) -> int:
+def solve_p1(walkable, poi) -> int:
     shortest_paths = find_shortest_paths(poi, walkable)
     return move_between_nodes(0, shortest_paths, set(), 0, len(poi))
+
+
+def solve_p2(walkable, poi) -> int:
+    shortest_paths = find_shortest_paths(poi, walkable)
+    return move_between_nodes_return(0, shortest_paths, set(), 0, len(poi))
 
 
 def find_shortest_paths(poi, walkable):
@@ -44,6 +48,14 @@ def move_between_nodes(current, paths, visited, distance, num_pois):
     return min(
         move_between_nodes(possible[0], paths, visited | {current}, distance + possible[1], num_pois) for possible in
         find_possible_moves(current, paths, visited))
+
+
+def move_between_nodes_return(current, paths, visited, distance, num_pois):
+    if len(visited) == num_pois - 1:
+        return distance + paths.get((current, 0), paths.get((0, current)))
+    return min(
+        move_between_nodes_return(possible[0], paths, visited | {current}, distance + possible[1], num_pois) for
+        possible in find_possible_moves(current, paths, visited))
 
 
 def find_possible_moves(current, paths, visited):
