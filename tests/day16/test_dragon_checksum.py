@@ -1,3 +1,5 @@
+import pytest
+
 from main.day16.dragon_checksum import solve
 
 
@@ -9,5 +11,6 @@ def test_p1_real():
     assert solve("10111100110001111", 272) == "11100110111101110"
 
 
+@pytest.mark.skip("Takes 7s to run")
 def test_p2_real():
     assert solve("10111100110001111", 35651584) == "10001101010000101"

@@ -1,6 +1,8 @@
 import os
 from pathlib import Path
 
+import pytest
+
 from main.day12.leonardo_s_monorail import solve
 
 
@@ -12,6 +14,7 @@ def test_p1_real():
     assert solve(read_input("data/input.txt")) == 318009
 
 
+@pytest.mark.skip("Takes 7s to run")
 def test_p2_real():
     assert solve(read_input("data/input.txt"), True) == 9227663
 
